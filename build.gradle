@@ -1,0 +1,46 @@
+dependencies {
+	compileOnly group: "com.liferay", name: "com.liferay.asset.taglib"
+	compileOnly group: "com.liferay", name: "com.liferay.comment.taglib"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.dynamic.section"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.form.navigator"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.util"
+	compileOnly group: "com.liferay", name: "com.liferay.journal.taglib"
+	compileOnly group: "com.liferay", name: "com.liferay.layout.taglib"
+	compileOnly group: "com.liferay", name: "com.liferay.site.taglib"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib"
+	compileOnly group: "javax.portlet", name: "portlet-api"
+	compileOnly group: "javax.servlet", name: "javax.servlet-api"
+	compileOnly group: "jstl", name: "jstl"
+	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
+	compileOnly group: 'com.liferay', name: 'com.liferay.petra.string', version: '4.0.1'
+	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype", version: "2.0.19"
+	compileOnly group: 'com.liferay', name: 'com.liferay.item.selector.api', version: '4.0.5'
+	compileOnly group: 'com.liferay', name: 'com.liferay.item.selector.criteria.api', version: '4.1.1'
+	compileOnly group: 'com.liferay', name: 'com.liferay.document.library.api', version: '6.0.2'
+	
+
+	cssBuilder group: "com.liferay", name: "com.liferay.css.builder", version: "3.0.2"
+}
+
+buildscript {
+	dependencies {
+		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.deployment.helper", version: "1.0.5"
+	}
+
+	repositories {
+		maven {
+			url "https://repository-cdn.liferay.com/nexus/content/groups/public"
+		}
+	}
+}
+
+repositories {
+    maven {
+        url "https://repository-cdn.liferay.com/nexus/content/groups/public"
+    }
+}
+
+apply plugin: "com.liferay.deployment.helper"

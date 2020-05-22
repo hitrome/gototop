@@ -1,0 +1,67 @@
+///*******************************************************************************
+// * Copyright (C) 2020 Roman Novikov
+// * 
+// * This program is free software: you can redistribute it and/or modify
+// * it under the terms of the GNU General Public License as published by
+// * the Free Software Foundation, either version 3 of the License, or
+// * (at your option) any later version.
+// * 
+// * This program is distributed in the hope that it will be useful,
+// * but WITHOUT ANY WARRANTY; without even the implied warranty of
+// * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// * GNU General Public License for more details.
+// * 
+// * You should have received a copy of the GNU General Public License
+// * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// ******************************************************************************/
+
+$space:20px;
+
+.gototop {
+}
+
+.gototop-hitrome-config-messages {
+	margin: 0 20px;
+}
+
+.gototop-hitrome-config-preview {
+	margin-top: 10px;
+	margin-bottom: 35px;
+}
+
+.gototop-hitrome-config-btn-color {
+	float: left;
+	width: 24pt;
+	height: 24pt;
+	margin:5px;
+	border: solid;
+	border-width: 1px;
+}
+
+.gototop-hitrome-config-columns {
+	padding-left: 0;
+}
+
+.gototop-hitrome-config-group {
+	margin-top: 10px;
+}
+
+.gototop-hitrome-config-bottom-space {
+	margin-bottom: 20px + $space;
+}
+
+.gototop-hitrome-holder {
+	position: fixed;
+	display: none;
+	z-index: 65535;
+}
+
+.gototop-hitrome-image {
+	margin-bottom: 7px;
+}
+
+.gototop-hitrome-text {
+	text-align: center;
+	font: 11px/100% Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+}

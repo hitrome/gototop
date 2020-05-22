@@ -1,0 +1,5 @@
+Bundle-Name: gototop
+Bundle-SymbolicName: ru.hitrome.java.liferay.gototop
+Bundle-Version: 1.0.0
+Export-Package: ru.hitrome.java.liferay.gototop.constants
+-metatype: *

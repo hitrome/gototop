@@ -28,7 +28,7 @@ import ru.hitrome.java.liferay.gototop.constants.GoToTopConstants;
  *
  */
 @ExtendedObjectClassDefinition(
-	    category = "visual-tools",
+	    category = "tools",
 	    scope = ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE
 	)
 @Meta.OCD(

@@ -161,7 +161,7 @@ String configTextButtonSpace = configuration.get(GoToTopConstants.MAX_CONFIG_TEX
 						<%
 						for (int i = 0; i < GoToTopConstants.FONT_FAMILIES.length; i++) {
 						%>
-						<aui:option label='<%= GoToTopConstants.FONT_FAMILIES[i].replaceAll(StringPool.QUOTE, "") %>' selected="<%= GoToTopConstants.FONT_FAMILIES[i].equals(goToTopConfiguration.buttonTextFontFamily()) %>" style='<%= "font-family:" + GoToTopConstants.FONT_FAMILIES[i] + StringPool.SEMICOLON %>' value="<%= String.valueOf(i) %>" />
+						<aui:option label='<%= GoToTopConstants.FONT_FAMILIES[i] %>' selected="<%= GoToTopConstants.FONT_FAMILIES[i].equals(goToTopConfiguration.buttonTextFontFamily()) %>" style='<%= "font-family:" + GoToTopConstants.FONT_FAMILIES[i] + StringPool.SEMICOLON %>' value="<%= String.valueOf(i) %>" />
 						<%
 						}
 						%>

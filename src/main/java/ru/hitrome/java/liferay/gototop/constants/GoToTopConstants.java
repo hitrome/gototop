@@ -24,8 +24,11 @@ package ru.hitrome.java.liferay.gototop.constants;
  */
 public class GoToTopConstants {
 	
+	// Misc
+	public static final String CONTEXT_PATH_SHORTCUT = "{}";
+	
 	// Defaults
-	public static final String DEFAULT_IMAGE_PATH = "/o/ru.hitrome.java.liferay.gototop/images/arrow4.png";
+	public static final String DEFAULT_IMAGE_PATH = "{}/images/arrow4.png";
 	public static final String DEFAULT_IMAGE_ID = "0";
 	public static final String DEFAULT_CONFIG_COLOR_TEXT = "#336699";
 	public static final String DEFAULT_CONFIG_BUTTON_TEXT = "";

@@ -61,7 +61,9 @@ public class Validators {
 	
 	public void validateImagePath(String imagePath) throws PortalException {
 		if (!imagePath.isEmpty() && (imagePath.length() > Integer.parseInt(_configuration.get(GoToTopConstants.MAX_CONFIG_IMAGE_PATH))
-				|| !Validator.isUrl(imagePath, true))) {
+				|| !Validator.isUrl(imagePath.startsWith(GoToTopConstants.CONTEXT_PATH_SHORTCUT)
+						? imagePath.substring(GoToTopConstants.CONTEXT_PATH_SHORTCUT.length(), imagePath.length())
+								: imagePath, true))) {
 			throw new ImagePathException();
 		}
 	}

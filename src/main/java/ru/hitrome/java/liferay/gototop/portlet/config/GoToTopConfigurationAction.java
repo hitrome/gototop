@@ -130,11 +130,6 @@ public class GoToTopConfigurationAction extends DefaultConfigurationAction {
 				GoToTopConstants.DEFAULT_CONFIG_BUTTON_TEXTBUTTON_SPACE);
 		
 		
-		// ContextPath substitution
-		if (imagePath.startsWith("{}")) {
-			String portletId = ParamUtil.getString(actionRequest, "portletResource");
-			imagePath = _portletLocalService.getPortletById(portletId).getContextPath() + imagePath.substring(2, imagePath.length());
-		}
 		
 		// Validate values
 		_validators.validateImagePath(imagePath);

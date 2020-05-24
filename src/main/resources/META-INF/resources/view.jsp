@@ -33,7 +33,10 @@ if (goToTopConfiguration.imagePath().isEmpty()) {
 		// Do nothing
 	}
 } else {
-	imageURL = goToTopConfiguration.imagePath();
+	imageURL = goToTopConfiguration.imagePath().startsWith(GoToTopConstants.CONTEXT_PATH_SHORTCUT) ? request.getContextPath()
+			+ goToTopConfiguration.imagePath().substring(GoToTopConstants.CONTEXT_PATH_SHORTCUT.length(), goToTopConfiguration.imagePath().length())
+			: goToTopConfiguration.imagePath();
+	
 }
 
 // Image

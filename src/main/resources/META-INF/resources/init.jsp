@@ -30,7 +30,10 @@
 
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="java.io.File" %>
 <%@ page import="javax.portlet.PortletURL" %>
+<%@ page import="javax.portlet.PortletConfig" %>
 
 <%@ page import="com.liferay.petra.string.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>

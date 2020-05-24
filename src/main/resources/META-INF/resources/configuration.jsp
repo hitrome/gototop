@@ -27,6 +27,8 @@
 <%@ page import="com.liferay.item.selector.criteria.image.criterion.ImageItemSelectorCriterion" %>
 <%@ page import="com.liferay.item.selector.ItemSelector" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.model.Portlet" %>
+<%@ page import="com.liferay.portal.kernel.portlet.PortletConfigFactoryUtil" %>
 
 <%@ page import="ru.hitrome.java.liferay.gototop.portlet.config.exceptions.ImagePathException" %>
 <%@ page import="ru.hitrome.java.liferay.gototop.portlet.config.exceptions.ImageIdException" %>
@@ -89,13 +91,16 @@ if (Validator.isNotNull(itemSelector)) {
 			imageItemSelectorCriterion);
 }
 String portletId = ParamUtil.getString(request, "portletResource");
-String imagePreview = portletLocalService.getPortletById(portletId).getContextPath() + "/images/noimage.png";
+Portlet portlet = portletLocalService.getPortletById(portletId);
+String imagePreview = portlet.getContextPath() + "/images/noimage.png";
 try {
 	FileEntry fileEntry = dlAppLocalService.getFileEntry(goToTopConfiguration.imageId());
 	imagePreview = dlURLHelper.getImagePreviewURL(fileEntry, themeDisplay);
 } catch (PortalException e) {
 	// System.out.println(e.getMessage());
 }
+PortletConfig configuredPortletConfig = PortletConfigFactoryUtil.get(portlet);
+Set<String> resourceSet = configuredPortletConfig.getPortletContext().getResourcePaths("/META-INF/resources/images");
 String maxStringLengthMessage = LanguageUtil.get(request, "gototop-max-string-length") + StringPool.COLON + StringPool.SPACE;
 String maxColorStringLengthMessage = LanguageUtil.get(request, "gototop-max-color-string-length") + StringPool.COLON + StringPool.SPACE;
 String configImagePathMaxLength = configuration.get(GoToTopConstants.MAX_CONFIG_IMAGE_PATH);
@@ -116,11 +121,31 @@ String configTextButtonSpace = configuration.get(GoToTopConstants.MAX_CONFIG_TEX
 	name="fm"
 >
 <aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-
 <aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
 
 <aui:fieldset>
-	<aui:input name="<%= GoToTopConstants.CONFIG_IMAGE_PATH_KEY %>" value="<%= goToTopConfiguration.imagePath() %>" placeholder="<%= maxStringLengthMessage + configImagePathMaxLength %>" helpMessage="config-image-path-help-message" />
+	<label class="control-label">
+		<liferay-ui:message key="config-image-path-helper" />
+	</label>
+	<div class="container">
+		<div class="row">
+			<%
+			for (String resource:resourceSet) {
+				if (resource.matches("^.*arrow\\d+\\.png$")) {
+					String arrowPath = StringPool.SLASH + "images" + StringPool.SLASH + (new File(resource)).getName();
+			%>
+			<div class="col" id="<portlet:namespace />config-arrow-bar">
+				<img src="<%= portlet.getContextPath() + arrowPath %>" class="img-responsive" data-arrow="<%= arrowPath %>" />
+			</div>
+			<%
+				}
+			}
+			%>
+		</div>
+	</div>
+	<div class="gototop-hitrome-config-group">
+		<aui:input name="<%= GoToTopConstants.CONFIG_IMAGE_PATH_KEY %>" value="<%= goToTopConfiguration.imagePath() %>" placeholder="<%= maxStringLengthMessage + configImagePathMaxLength %>" helpMessage="config-image-path-help-message" />
+	</div>
 	<div class="d-flex">
 		<aui:input name="<%= GoToTopConstants.CONFIG_IMAGE_ID_KEY %>" type="number" value="<%= goToTopConfiguration.imageId() %>" min="0" max="<%= Long.MAX_VALUE %>" helpMessage="config-image-id-help-message" />
 		<div style="float:left;margin-left:10px;">
@@ -299,9 +324,25 @@ String configTextButtonSpace = configuration.get(GoToTopConstants.MAX_CONFIG_TEX
 		}
 	);
 </aui:script>
+<aui:script>
+	$('#<portlet:namespace/>config-arrow-bar .img-responsive').on(
+		'click',
+		function(event) {
+			$('#<portlet:namespace/><%= GoToTopConstants.CONFIG_IMAGE_PATH_KEY %>').val(
+				"<%= GoToTopConstants.CONTEXT_PATH_SHORTCUT %>" + $(this).data('arrow')
+			);
+		}
+	);
+</aui:script>
 
 </c:when>
 <c:otherwise>
-
+<div class="gototop-hitrome-config-messages">
+	<clay:alert
+		message="<%= LanguageUtil.get(request, "gototop-error-settings") %>"
+		style="danger"
+		title="<%= LanguageUtil.get(request, "error") %>"
+	/>
+</div>
 </c:otherwise>
 </c:choose>
